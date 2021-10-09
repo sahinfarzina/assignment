@@ -1,0 +1,73 @@
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form class="form-material" method="post" action="/app/make-shorturl">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Url<span class="required">*</span></label>
+                                    <input type="text" name="url" placeholder="URL" class="form-control form-control-line" value="">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label style="width:100%">&nbsp;</label>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <%- include ('./partials/admin_messages') %>
+                    <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Actual Url</th>
+                                <th>Short Url</th>
+                                <th>Clicks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            if(data.hasOwnProperty('list')){
+                                data.list.forEach((record)=>{
+                            %>
+                            <tr>
+                                <td><a href="<%=record.actual_url%>" target="_blank"><%=record.actual_url%></a></td>
+                                <td><a href="/app/visit-shorturl/<%=record.short_url%>" target="_blank"><%=record.short_url%></a></td>
+                                <td><%=record.no_clicks%></td>
+                                
+                            </tr>
+                        
+                            <% })
+                            } %>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Actual Url</th>
+                                <th>Short Url</th>
+                                <th>Clicks</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    
+</section>
+
