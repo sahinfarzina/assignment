@@ -6,6 +6,7 @@ const connectDB = require('../config/connection')
 const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
+const cors = require('cors')
 
 //load env variables
 dotenv.config({ path: "./config/config.env" });
@@ -56,10 +57,10 @@ app.use((req, res, next) => {
     res.locals.error_msg = req.flash("error_msg");
     next();
 });
-
+app.use(cors())
 //Router
 app.use("/app", require("./routes/app"));
-
+app.use("/api", require("./routes/api"));
 
 
 const PORT = process.env.PORT || 3000;
